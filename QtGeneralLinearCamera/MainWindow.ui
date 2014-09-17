@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>512</width>
+    <height>512</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>512</width>
+    <height>512</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -19,7 +25,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>512</width>
      <height>21</height>
     </rect>
    </property>
@@ -31,7 +37,16 @@
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuCamera">
+    <property name="title">
+     <string>Camera</string>
+    </property>
+    <addaction name="actionCameraPerspective"/>
+    <addaction name="actionCameraOrthogonal"/>
+    <addaction name="actionCameraPushbroom"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuCamera"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -50,6 +65,21 @@
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionCameraPerspective">
+   <property name="text">
+    <string>Perspective</string>
+   </property>
+  </action>
+  <action name="actionCameraOrthogonal">
+   <property name="text">
+    <string>Orthogonal</string>
+   </property>
+  </action>
+  <action name="actionCameraPushbroom">
+   <property name="text">
+    <string>Pushbroom</string>
    </property>
   </action>
  </widget>

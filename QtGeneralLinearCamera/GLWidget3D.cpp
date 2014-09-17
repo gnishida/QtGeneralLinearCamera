@@ -3,13 +3,15 @@
 #include "MainWindow.h"
 #include <GL/GLU.h>
 #include "OBJLoader.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
 
 /**
  * This event handler is called when the mouse press events occur.
  */
 void GLWidget3D::mousePressEvent(QMouseEvent *e)
 {
-	camera.mouseDown(e->x(), e->y());
+	prevMousePt = QVector2D(e->x(), e->y());
 }
 
 /**
@@ -17,8 +19,6 @@ void GLWidget3D::mousePressEvent(QMouseEvent *e)
  */
 void GLWidget3D::mouseReleaseEvent(QMouseEvent *e)
 {
-	camera.mouseUp();
-
 	updateGL();
 }
 
@@ -28,10 +28,12 @@ void GLWidget3D::mouseReleaseEvent(QMouseEvent *e)
 void GLWidget3D::mouseMoveEvent(QMouseEvent *e)
 {
 	if (e->buttons() & Qt::LeftButton) {
-		camera.rotate(e->x(), e->y());
+		rotate(e->x() - prevMousePt.x(), e->y() - prevMousePt.y());
 	} else if (e->buttons() & Qt::RightButton) {
-		camera.zoom(e->x(), e->y());
+		translate(e->y() - prevMousePt.y());
 	}
+
+	prevMousePt = QVector2D(e->x(), e->y());
 
 	updateGL();
 }
@@ -51,7 +53,8 @@ void GLWidget3D::initializeGL()
 	static GLfloat lightPosition[4] = {0.0f, 0.0f, 100.0f, 0.0f};
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 
-	loadOBJ("models/cube.obj");
+	//loadOBJ("models/triangle2.obj");
+	loadOBJ("models/cube2.obj");
 }
 
 /**
@@ -75,14 +78,14 @@ void GLWidget3D::resizeGL(int width, int height)
  */
 void GLWidget3D::paintGL()
 {
-	glc.castRay(0, 0, vertices, Vector3f(0.5f, 0.5f, 0.5f));
+	camera.castRay(0, 0, vertices, Vector3f(0.5f, 0.5f, 0.5f));
 
 	for (int y = 0; y < height(); ++y) {
 		for (int x = 0; x < width(); ++x) {
 			float sx = (float)x + 0.5f - width() * 0.5f;
 			float sy = (float)y + 0.5f - height() * 0.5f;
 
-			frameBuffer[y * width() + x] = glc.castRay(sx, sy, vertices, Vector3f(0.5f, 0.5f, 0.5f));
+			frameBuffer[y * width() + x] = camera.castRay(sx, sy, vertices, Vector3f(0.5f, 0.5f, 0.5f));
 		}
 	}
 
@@ -111,18 +114,54 @@ void GLWidget3D::loadOBJ(const QString& filename)
 		}
 	}
 
-	float max_z = 0.0f;
+	computeCentroid();
+}
+
+void GLWidget3D::setCamera(int type)
+{
+	camera.setType(type);
+	updateGL();
+}
+
+void GLWidget3D::computeCentroid()
+{
+	QVector3D minPt(std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max());
+	QVector3D maxPt(-std::numeric_limits<float>::max(), -std::numeric_limits<float>::max(), -std::numeric_limits<float>::max());
 	for (int i = 0; i < vertices.size(); ++i) {
-		vertices[i].position[0] *= 100.0f;
-		vertices[i].position[1] *= 100.0f;
-		vertices[i].position[2] *= 100.0f;
-		if (vertices[i].position[2] > max_z) {
-			max_z = vertices[i].position[2];
-		}
+		if (vertices[i].position[0] < minPt.x()) minPt.setX(vertices[i].position[0]);
+		if (vertices[i].position[1] < minPt.y()) minPt.setY(vertices[i].position[1]);
+		if (vertices[i].position[2] < minPt.z()) minPt.setZ(vertices[i].position[2]);
+
+		if (vertices[i].position[0] > maxPt.x()) maxPt.setX(vertices[i].position[0]);
+		if (vertices[i].position[1] > maxPt.y()) maxPt.setY(vertices[i].position[1]);
+		if (vertices[i].position[2] > maxPt.z()) maxPt.setZ(vertices[i].position[2]);
 	}
 
+	objCenter.setX((minPt.x() + maxPt.x()) * 0.5f);
+	objCenter.setY((minPt.y() + maxPt.y()) * 0.5f);
+	objCenter.setZ((minPt.z() + maxPt.z()) * 0.5f);
+}
+
+void GLWidget3D::rotate(float dx, float dy)
+{
+	glm::vec3 rotX(1, 0, 0);
+	glm::vec3 rotY(0, 1, 0);
+	glm::mat4 rotM = glm::rotate(dx*0.5f, rotY) * glm::rotate(dy*0.5f, rotX);
+
 	for (int i = 0; i < vertices.size(); ++i) {
-		vertices[i].position[2] -= max_z + 1.0f;
+		glm::vec4 pt(vertices[i].position[0], vertices[i].position[1], vertices[i].position[2] - objCenter.z(), 1.0f);
+		pt = rotM * pt;
+		vertices[i].position[0] = pt[0];
+		vertices[i].position[1] = pt[1];
+		vertices[i].position[2] = pt[2] + objCenter.z();
 	}
 }
 
+void GLWidget3D::translate(float dy)
+{
+	for (int i = 0; i < vertices.size(); ++i) {
+		vertices[i].position[2] += dy;
+	}
+
+	computeCentroid();
+}

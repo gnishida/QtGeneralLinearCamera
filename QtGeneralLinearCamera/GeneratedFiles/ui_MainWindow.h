@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created: Fri Sep 5 15:54:15 2014
+** Created: Wed Sep 17 11:12:24 2014
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -29,9 +29,13 @@ class Ui_MainWindowClass
 public:
     QAction *actionExit;
     QAction *actionOpen;
+    QAction *actionCameraPerspective;
+    QAction *actionCameraOrthogonal;
+    QAction *actionCameraPushbroom;
     QWidget *centralWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
+    QMenu *menuCamera;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -39,19 +43,28 @@ public:
     {
         if (MainWindowClass->objectName().isEmpty())
             MainWindowClass->setObjectName(QString::fromUtf8("MainWindowClass"));
-        MainWindowClass->resize(600, 400);
+        MainWindowClass->resize(512, 512);
+        MainWindowClass->setMaximumSize(QSize(512, 512));
         actionExit = new QAction(MainWindowClass);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
         actionOpen = new QAction(MainWindowClass);
         actionOpen->setObjectName(QString::fromUtf8("actionOpen"));
+        actionCameraPerspective = new QAction(MainWindowClass);
+        actionCameraPerspective->setObjectName(QString::fromUtf8("actionCameraPerspective"));
+        actionCameraOrthogonal = new QAction(MainWindowClass);
+        actionCameraOrthogonal->setObjectName(QString::fromUtf8("actionCameraOrthogonal"));
+        actionCameraPushbroom = new QAction(MainWindowClass);
+        actionCameraPushbroom->setObjectName(QString::fromUtf8("actionCameraPushbroom"));
         centralWidget = new QWidget(MainWindowClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         MainWindowClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindowClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 600, 21));
+        menuBar->setGeometry(QRect(0, 0, 512, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuCamera = new QMenu(menuBar);
+        menuCamera->setObjectName(QString::fromUtf8("menuCamera"));
         MainWindowClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindowClass);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -61,9 +74,13 @@ public:
         MainWindowClass->setStatusBar(statusBar);
 
         menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuCamera->menuAction());
         menuFile->addAction(actionOpen);
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
+        menuCamera->addAction(actionCameraPerspective);
+        menuCamera->addAction(actionCameraOrthogonal);
+        menuCamera->addAction(actionCameraPushbroom);
 
         retranslateUi(MainWindowClass);
 
@@ -75,7 +92,11 @@ public:
         MainWindowClass->setWindowTitle(QApplication::translate("MainWindowClass", "MainWindow", 0, QApplication::UnicodeUTF8));
         actionExit->setText(QApplication::translate("MainWindowClass", "Exit", 0, QApplication::UnicodeUTF8));
         actionOpen->setText(QApplication::translate("MainWindowClass", "Open", 0, QApplication::UnicodeUTF8));
+        actionCameraPerspective->setText(QApplication::translate("MainWindowClass", "Perspective", 0, QApplication::UnicodeUTF8));
+        actionCameraOrthogonal->setText(QApplication::translate("MainWindowClass", "Orthogonal", 0, QApplication::UnicodeUTF8));
+        actionCameraPushbroom->setText(QApplication::translate("MainWindowClass", "Pushbroom", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindowClass", "File", 0, QApplication::UnicodeUTF8));
+        menuCamera->setTitle(QApplication::translate("MainWindowClass", "Camera", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

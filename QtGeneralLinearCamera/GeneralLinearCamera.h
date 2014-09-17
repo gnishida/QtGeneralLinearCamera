@@ -7,8 +7,11 @@
 class GeneralLinearCamera
 {
 public:
+	static enum { TYPE_PERSPECTIVE = 0, TYPE_ORTHOGONAL, TYPE_PUSHBROOM };
+public:
 	GeneralLinearCamera();
 
+	void setType(int type);
 	Vector3f castRay(float s, float t, std::vector<Vertex> &vertices, Vector3f &bgColor);
 
 private:

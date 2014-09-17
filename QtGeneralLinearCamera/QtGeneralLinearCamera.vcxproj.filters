@@ -46,22 +46,19 @@
     <ClCompile Include="GeneratedFiles\qrc_MainWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Main Files</Filter>
-    </ClCompile>
     <ClCompile Include="GLWidget3D.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
     <ClCompile Include="OBJLoader.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3f.cpp">
-      <Filter>Main Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneralLinearCamera.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
     <ClCompile Include="Util.cpp">
+      <Filter>Main Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3f.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,9 +77,6 @@
     <ClInclude Include="GeneratedFiles\ui_MainWindow.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Main Files</Filter>
-    </ClInclude>
     <ClInclude Include="GLWidget3D.h">
       <Filter>Main Files</Filter>
     </ClInclude>
@@ -92,13 +86,13 @@
     <ClInclude Include="Vertex.h">
       <Filter>Main Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3f.h">
-      <Filter>Main Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneralLinearCamera.h">
       <Filter>Main Files</Filter>
     </ClInclude>
     <ClInclude Include="Util.h">
+      <Filter>Main Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3f.h">
       <Filter>Main Files</Filter>
     </ClInclude>
   </ItemGroup>

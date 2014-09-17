@@ -14,6 +14,9 @@ public:
 
 public slots:
 	void onFileOpen();
+	void onCameraPerspective();
+	void onCameraOrthogonal();
+	void onCameraPushbroom();
 
 private:
 	Ui::MainWindowClass ui;

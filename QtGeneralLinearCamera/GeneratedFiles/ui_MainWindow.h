@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created: Wed Sep 17 11:12:24 2014
+** Created: Wed Sep 17 15:13:07 2014
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -32,6 +32,8 @@ public:
     QAction *actionCameraPerspective;
     QAction *actionCameraOrthogonal;
     QAction *actionCameraPushbroom;
+    QAction *actionCameraBilinear;
+    QAction *actionCameraXSlit;
     QWidget *centralWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
@@ -55,6 +57,10 @@ public:
         actionCameraOrthogonal->setObjectName(QString::fromUtf8("actionCameraOrthogonal"));
         actionCameraPushbroom = new QAction(MainWindowClass);
         actionCameraPushbroom->setObjectName(QString::fromUtf8("actionCameraPushbroom"));
+        actionCameraBilinear = new QAction(MainWindowClass);
+        actionCameraBilinear->setObjectName(QString::fromUtf8("actionCameraBilinear"));
+        actionCameraXSlit = new QAction(MainWindowClass);
+        actionCameraXSlit->setObjectName(QString::fromUtf8("actionCameraXSlit"));
         centralWidget = new QWidget(MainWindowClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         MainWindowClass->setCentralWidget(centralWidget);
@@ -81,6 +87,8 @@ public:
         menuCamera->addAction(actionCameraPerspective);
         menuCamera->addAction(actionCameraOrthogonal);
         menuCamera->addAction(actionCameraPushbroom);
+        menuCamera->addAction(actionCameraBilinear);
+        menuCamera->addAction(actionCameraXSlit);
 
         retranslateUi(MainWindowClass);
 
@@ -95,6 +103,8 @@ public:
         actionCameraPerspective->setText(QApplication::translate("MainWindowClass", "Perspective", 0, QApplication::UnicodeUTF8));
         actionCameraOrthogonal->setText(QApplication::translate("MainWindowClass", "Orthogonal", 0, QApplication::UnicodeUTF8));
         actionCameraPushbroom->setText(QApplication::translate("MainWindowClass", "Pushbroom", 0, QApplication::UnicodeUTF8));
+        actionCameraBilinear->setText(QApplication::translate("MainWindowClass", "Bilinear", 0, QApplication::UnicodeUTF8));
+        actionCameraXSlit->setText(QApplication::translate("MainWindowClass", "XSlit", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindowClass", "File", 0, QApplication::UnicodeUTF8));
         menuCamera->setTitle(QApplication::translate("MainWindowClass", "Camera", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

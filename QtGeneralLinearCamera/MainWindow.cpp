@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent, Qt::WFlags flags)
 	connect(ui.actionCameraPerspective, SIGNAL(triggered()), this, SLOT(onCameraPerspective()));
 	connect(ui.actionCameraOrthogonal, SIGNAL(triggered()), this, SLOT(onCameraOrthogonal()));
 	connect(ui.actionCameraPushbroom, SIGNAL(triggered()), this, SLOT(onCameraPushbroom()));
+	connect(ui.actionCameraBilinear, SIGNAL(triggered()), this, SLOT(onCameraBilinear()));
+	connect(ui.actionCameraXSlit, SIGNAL(triggered()), this, SLOT(onCameraXSlit()));
 
 	// setup the OpenGL widget
 	glWidget = new GLWidget3D();
@@ -39,4 +41,14 @@ void MainWindow::onCameraOrthogonal()
 void MainWindow::onCameraPushbroom()
 {
 	glWidget->setCamera(GeneralLinearCamera::TYPE_PUSHBROOM);
+}
+
+void MainWindow::onCameraBilinear()
+{
+	glWidget->setCamera(GeneralLinearCamera::TYPE_BILINEAR);
+}
+
+void MainWindow::onCameraXSlit()
+{
+	glWidget->setCamera(GeneralLinearCamera::TYPE_XSLIT);
 }

@@ -7,7 +7,7 @@
 class GeneralLinearCamera
 {
 public:
-	static enum { TYPE_PERSPECTIVE = 0, TYPE_ORTHOGONAL, TYPE_PUSHBROOM };
+	static enum { TYPE_PERSPECTIVE = 0, TYPE_ORTHOGONAL, TYPE_PUSHBROOM, TYPE_BILINEAR, TYPE_XSLIT };
 public:
 	GeneralLinearCamera();
 

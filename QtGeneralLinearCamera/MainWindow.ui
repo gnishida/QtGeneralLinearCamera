@@ -44,6 +44,8 @@
     <addaction name="actionCameraPerspective"/>
     <addaction name="actionCameraOrthogonal"/>
     <addaction name="actionCameraPushbroom"/>
+    <addaction name="actionCameraBilinear"/>
+    <addaction name="actionCameraXSlit"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuCamera"/>
@@ -80,6 +82,16 @@
   <action name="actionCameraPushbroom">
    <property name="text">
     <string>Pushbroom</string>
+   </property>
+  </action>
+  <action name="actionCameraBilinear">
+   <property name="text">
+    <string>Bilinear</string>
+   </property>
+  </action>
+  <action name="actionCameraXSlit">
+   <property name="text">
+    <string>XSlit</string>
    </property>
   </action>
  </widget>

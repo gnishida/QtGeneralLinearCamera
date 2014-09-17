@@ -17,6 +17,8 @@ public slots:
 	void onCameraPerspective();
 	void onCameraOrthogonal();
 	void onCameraPushbroom();
+	void onCameraBilinear();
+	void onCameraXSlit();
 
 private:
 	Ui::MainWindowClass ui;
